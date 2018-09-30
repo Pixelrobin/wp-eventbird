@@ -1,0 +1,18 @@
+{
+  "name": "wp-eventbird",
+  "version": "1.0.0",
+  "description": "Gutenburg-ready support for WordPress event post types",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack -w --mode development"
+  },
+  "author": "Michael Savchuk",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.1.0",
+    "babel-loader": "^8.0.4",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2"
+  }
+}

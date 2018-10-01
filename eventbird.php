@@ -10,6 +10,21 @@ Text Domain: ebird
 
 defined( 'ABSPATH' ) or die('🐦');
 
+// --- Blocks --- //
+function ebird_blocks() {
+	wp_register_script(
+		'wp-eventbird-date-block',
+		plugins_url('dist/js/wp-eventbird-date-block.js', __FILE__),
+		array('wp-blocks', 'wp-element')
+	);
+
+	register_block_type('eventbird/date', array(
+		'editor_script' => 'wp-eventbird-date-block',
+	));
+}
+
+// --- Post Type --- //
+
 function ebird_create_post_type() {
 	register_post_type('event', array(
 		'labels' => array(
@@ -37,4 +52,5 @@ function ebird_create_post_type() {
 }
 
 // --- Actions --- //
+add_action('init', 'ebird_blocks');
 add_action('init', 'ebird_create_post_type');

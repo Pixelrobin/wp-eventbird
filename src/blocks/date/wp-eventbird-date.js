@@ -1,18 +1,47 @@
 const { registerBlockType } = wp.blocks;
-const blockStyle = { backgroundColor: '#900', color: '#fff', padding: '20px' };
+const { RichText } = wp.editor;
 
 registerBlockType( 'eventbird/date', {
-    title: 'EventBird Date',
+  title: 'EventBird Date',
 
-    icon: 'dashicons-calendar-alt',
+  icon: 'dashicons-calendar-alt',
 
-    category: 'layout',
+  category: 'layout',
 
-    edit() {
-        return <p style={ blockStyle }>Hello editor!</p>;
-    },
+  attributes: {
+    content: {
+      type: 'array',
+      source: 'children',
+      selector: 'p'
+    }
+  },
 
-    save() {
-        return <p style={ blockStyle }>Hello saved content.</p>;
-    },
-} );
+  edit({ attributes, className, setAttributes }) {
+    const { content } = attributes;
+
+    function onChangeContent(newContent) {
+      setAttributes({ content: newContent });
+    }
+
+    return (
+      <RichText
+        tagName="p"
+        className={ className }
+        onChange={ onChangeContent }
+        value={ content }
+      />
+    );
+  },
+
+  save({ attributes, className }) {
+    const { content } = attributes;
+
+    return (
+      <RichText.Content 
+        tagName="p" 
+        className={ className } 
+        value={ content } 
+      />
+    );
+  }
+});

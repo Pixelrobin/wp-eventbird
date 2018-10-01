@@ -12,15 +12,25 @@ defined( 'ABSPATH' ) or die('🐦');
 
 // --- Blocks --- //
 function ebird_blocks() {
+
 	wp_register_script(
 		'wp-eventbird-date-block',
-		plugins_url('dist/js/wp-eventbird-date-block.js', __FILE__),
+		plugins_url('dist/blocks/date/wp-eventbird-date.js', __FILE__),
 		array('wp-blocks', 'wp-element')
+	);
+
+	wp_register_style(
+		'wp-eventbird-date-block',
+		plugins_url('dist/blocks/date/wp-eventbird-date.css', __FILE__),
+		array('wp-edit-blocks'),
+		filemtime(plugin_dir_path(__FILE__) . 'dist/blocks/date/wp-eventbird-date.css')
 	);
 
 	register_block_type('eventbird/date', array(
 		'editor_script' => 'wp-eventbird-date-block',
+		'style'  => 'wp-eventbird-date-block'
 	));
+
 }
 
 // --- Post Type --- //

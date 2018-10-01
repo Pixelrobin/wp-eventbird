@@ -9,7 +9,7 @@ registerBlockType( 'eventbird/date', {
     category: 'layout',
 
     edit() {
-        return <p style={ blockStyle }>Hello editor.</p>;
+        return <p style={ blockStyle }>Hello editor!</p>;
     },
 
     save() {

@@ -17,7 +17,9 @@
     "@wordpress/babel-preset-default": "^3.0.0",
     "babel-loader": "^8.0.4",
     "gulp": "^4.0.0",
+    "gulp-sass": "^4.0.1",
     "vinyl-named": "^1.1.0",
+    "vinyl-named-with-path": "^1.0.0",
     "webpack-stream": "^5.1.1"
   },
   "dependencies": {}

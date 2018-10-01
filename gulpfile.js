@@ -1,9 +1,10 @@
 const gulp    = require('gulp');
 const webpack = require('webpack-stream');
-const named   = require('vinyl-named');
+const named   = require('vinyl-named-with-path');
+const sass    = require('gulp-sass');
 
 gulp.task('scripts', () =>
-  gulp.src('src/js/*.js')
+  gulp.src('src/**/*.js', { base: './src/' })
     .pipe(named())
     .pipe(webpack({
       module: {
@@ -28,11 +29,18 @@ gulp.task('scripts', () =>
 
       mode: 'production'
     }))
-    .pipe(gulp.dest('dist/js/'))  
+    .pipe(gulp.dest('dist/'))  
 );
+
+gulp.task('styles', () =>
+  gulp.src('src/**/*.scss', { base: './src/' })
+    .pipe(sass()).on('error', sass.logError)
+    .pipe(gulp.dest('dist/'))
+)
 
 gulp.task('default', gulp.parallel('scripts'));
 
 gulp.task('dev', gulp.series('scripts', done => {
-  gulp.watch('src/js/**/*.js', gulp.series('scripts'));
+  gulp.watch('src/**/*.js', gulp.series('scripts'));
+  gulp.watch('src/**/*.scss', gulp.series('styles'));
 }));
